@@ -7,7 +7,6 @@ const CourseGrid = ({
   courses = [], 
   loading = false, 
   userRole = 'student',
-  enrolledCourses = [],
   onLoadMore = () => {},
   hasMore = false,
   currentPage = 1,
@@ -76,7 +75,6 @@ const CourseGrid = ({
             key={course?.id}
             course={course}
             userRole={userRole}
-            enrolledCourses={enrolledCourses}
           />
         ))}
       </div>

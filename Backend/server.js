@@ -2,9 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-
 const app = express();
+
 const auth = require('./routes/auth');
+const courses = require('./routes/courses');
 const authenticateToken = require('./middleware/auth')
 
 app.use(cors());
@@ -31,6 +32,7 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://shanukaabey37_db_user:w
 
 //Routes
 app.use('/api/auth', auth)
+app.use('/api/courses', courses)
 
 //Start the server
 const PORT = process.env.PORT || 5000;

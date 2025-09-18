@@ -1,13 +1,5 @@
 const API_BASE = 'http://localhost:5000/api';
 
-export function getToken(){
-    return localStorage.getItem('token');
-}
-
-export function logout(){
-    localStorage.removeItem('token');
-}
-
 export async function getProtectedData(){
     const token = getToken();
     const res = await fetch(`${API_BASE}/protected`, {
@@ -16,6 +8,15 @@ export async function getProtectedData(){
         }
     })
     return res.json();
+}
+
+
+export function getToken(){
+    return localStorage.getItem('token');
+}
+
+export function logout(){
+    localStorage.removeItem('token');
 }
 
 export async function login(email, password){
@@ -42,4 +43,9 @@ export async function register(name, email, password, role){
         localStorage.setItem('token', data.token)
     }
     return data;
+}
+
+export async function getCourses(){
+    const res = await fetch(`${API_BASE}/courses`);
+    return res.json();
 }
