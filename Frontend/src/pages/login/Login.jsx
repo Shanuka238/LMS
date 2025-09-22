@@ -42,6 +42,12 @@ const Login = () => {
           required
         />
         <button className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition">Login</button>
+        <p className="text-center mt-4">
+          Don't have an account?{" "}
+          <a href="/register" className="text-blue-600 hover:underline">
+            Register
+          </a>
+        </p>
       </form>
     </div>
   );

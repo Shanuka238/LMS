@@ -7,11 +7,11 @@ import CourseManagement from './pages/course-management';
 import VideoPlayerPage from './pages/video-player';
 import StudentDashboard from './pages/student-dashboard';
 import CourseCatalog from './pages/course-catalog';
-import CourseDetails from './pages/course-details';
 import Login from './pages/login/login';
 import Register from "pages/register/Register";
 import Home from './pages/landing-page/Home';
 import AboutUs from "pages/about-us/AboutUs";
+import CourseDetails from "pages/course-details";
 
 const Routes = () => {
   return (

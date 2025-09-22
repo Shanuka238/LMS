@@ -7,14 +7,13 @@ import { getCourses } from '../../utils/api';
 
 const CourseCatalog = () => {
   const location = useLocation();
-  const [userRole] = useState('student'); // This would come from auth context
+  const [userRole] = useState('student'); 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 12;
   const [allCourses, setAllCourses] = useState([]);
   
-  // Filter state
   const [filters, setFilters] = useState({
     search: '',
     category: 'all',
@@ -33,14 +32,11 @@ const CourseCatalog = () => {
     fetchData();
   }, []);
 
-
-  // Filter and sort courses
   const filteredCourses = useMemo(() => {
     let filtered = [...allCourses];
     return filtered;
   }, [filters, allCourses]);
   
-  // Calculate course counts by category
   const courseCounts = useMemo(() => {
     const counts = { all: allCourses?.length };
     allCourses?.forEach(course => {
@@ -54,11 +50,6 @@ const CourseCatalog = () => {
   const paginatedCourses = filteredCourses?.slice(0, currentPage * coursesPerPage);
   const hasMore = currentPage < totalPages;
   
-  const handleFiltersChange = (newFilters) => {
-    setFilters(newFilters);
-    setCurrentPage(1); // Reset to first page when filters change
-  };
-  
   const handleCategoryChange = (category) => {
     setFilters(prev => ({ ...prev, category }));
     setCurrentPage(1);
@@ -67,7 +58,6 @@ const CourseCatalog = () => {
   const handleLoadMore = () => {
     if (hasMore && !loading) {
       setLoading(true);
-      // Simulate loading delay
       setTimeout(() => {
         setCurrentPage(prev => prev + 1);
         setLoading(false);

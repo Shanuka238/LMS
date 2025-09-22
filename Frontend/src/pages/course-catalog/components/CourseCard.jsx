@@ -6,7 +6,6 @@ import Button from '../../../components/ui/Button';
 
 const CourseCard = ({ course, userRole = 'student', enrolledCourses = [] }) => {
   const navigate = useNavigate();
-  
   const isEnrolled = enrolledCourses?.some(enrolled => enrolled?.id === course?.id);
   
   const handleCourseClick = () => {
@@ -15,11 +14,7 @@ const CourseCard = ({ course, userRole = 'student', enrolledCourses = [] }) => {
   
   const handleEnrollClick = (e) => {
     e?.stopPropagation();
-    if (isEnrolled) {
-      navigate('/video-player', { state: { courseId: course?.id } });
-    } else {
-      navigate('/course-details', { state: { courseId: course?.id } });
-    }
+    navigate('/course-details', { state: { courseId: course._id || course.id } });
   };
   
   const getDifficultyColor = (level) => {
@@ -35,37 +30,9 @@ const CourseCard = ({ course, userRole = 'student', enrolledCourses = [] }) => {
     }
   };
   
-  const renderStars = (rating) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-    
-    for (let i = 0; i < fullStars; i++) {
-      stars?.push(
-        <Icon key={i} name="Star" size={14} className="text-warning fill-warning" />
-      );
-    }
-    
-    if (hasHalfStar) {
-      stars?.push(
-        <Icon key="half" name="Star" size={14} className="text-warning fill-warning opacity-50" />
-      );
-    }
-    
-    const remainingStars = 5 - Math.ceil(rating);
-    for (let i = 0; i < remainingStars; i++) {
-      stars?.push(
-        <Icon key={`empty-${i}`} name="Star" size={14} className="text-muted-foreground" />
-      );
-    }
-    
-    return stars;
-  };
-  
   return (
     <div 
-      className="bg-card border border-border rounded-lg shadow-soft hover:shadow-soft-lg transition-all duration-300 cursor-pointer group overflow-hidden w-full"
-      onClick={handleCourseClick}
+      className="bg-card border border-border rounded-lg shadow-soft hover:shadow-soft-lg transition-all duration-300 group overflow-hidden w-full"
     >
       {/* Course Thumbnail */}
       <div className="relative overflow-hidden h-48">

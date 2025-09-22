@@ -10,7 +10,6 @@ export async function getProtectedData(){
     return res.json();
 }
 
-
 export function getToken(){
     return localStorage.getItem('token');
 }
